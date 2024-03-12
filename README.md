@@ -31,3 +31,4 @@ Open [http://127.0.0.1:5173/](http://127.0.0.1:5173/) to view it in the browser.
 ### `npm run preview`
 
 Boots up a local static web server that serves the files from dist at [`http://localhost:4173`](http://localhost:4173) . It's an easy way to check if the production build looks OK in your local environment.
+# pivot-component-latest
