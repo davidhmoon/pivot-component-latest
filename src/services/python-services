@@ -1,0 +1,17 @@
+import { AxiosResponse } from 'axios';
+import { GroupDataProps } from '../utils/interfaces';
+import { axiosInstance } from '../interceptors/private.interceptor';
+
+
+export async function getPivotService(group: string, params?: object) {
+    if (params) {
+        return axiosInstance
+            .get(`/storePivot/${group}`, {
+                params: params,
+            })
+            .then((data: AxiosResponse) => data.data);
+    } else {
+        return axiosInstance.get(`/storePivot/${group}`).then((data: AxiosResponse) => data.data);
+    }
+}
+

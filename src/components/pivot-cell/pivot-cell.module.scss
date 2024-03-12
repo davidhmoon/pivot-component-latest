@@ -1,0 +1,58 @@
+.root {
+}
+.pivotCell {
+  min-width: 80px;
+  max-width: 80px;
+  text-overflow: ellipsis;
+  text-align: right;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pivotCell:first-child {
+  justify-content: start;
+  position: sticky;
+  left: 0px;
+  text-align: left;
+  border-right: 1px solid rgba(232, 232, 232, 0.6);
+  box-sizing: border-box;
+  font-size: 0.85em;
+  line-height: 20px;
+  color: #4b4b4b;
+  font-family: 'Inter UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: normal;
+  letter-spacing: 0.01em;
+  justify-content: sp;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  text-align: left;
+  min-width: 250px;
+  max-width: 150px;
+}
+
+.pivotCell:last-child {
+  margin-right: 17px;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+}
+.root:hover {
+  background: #a2bad7 !important;
+}
+
+.root:hover div {
+  background: #a2bad7 !important;
+}
+
+.spanClicker {
+}

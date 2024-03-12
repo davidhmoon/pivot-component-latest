@@ -1,0 +1,60 @@
+.root {}
+
+.pivotHead:not(:first-child) {
+  justify-content: end;
+  gap: 0px;
+}
+
+.pivotHead {
+  color: white;
+  background-color: rgb(38, 42, 52);
+  min-width: 80px;
+  height: 100%;
+  max-width: 80px;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-weight: 600;
+  font-size: 0.85em;
+  line-height: 20px;
+  cursor: pointer;
+
+}
+
+.pivotHead:first-child {
+  background-color: rgb(38, 42, 52);
+  min-width: 250px;
+  border-right: 1px solid rgba(232, 232, 232, 0.4);
+  cursor: pointer;
+  position: sticky;
+  left: 0px;
+  text-align: left;
+  height: 100%;
+  max-width: 80px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 0.85em;
+  line-height: 20px;
+  text-align: left;
+}
+
+.pivotHead:last-child {
+  margin-right: 17px;
+}
+
+.firstSpan {
+  margin-left: 17px;
+  text-align: left;
+}
+
+.iconsSort {
+  display: contents;
+  gap: 0px;
+}
+.iconSort{
+  width: 15px;
+  height: auto;
+  margin-left: 0px;
+}

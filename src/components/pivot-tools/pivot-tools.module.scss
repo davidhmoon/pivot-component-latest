@@ -1,0 +1,20 @@
+.root {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-content: center;
+  background-color: rgb(255, 255, 255);
+  flex-direction: row;
+  padding: 0.5rem;
+}
+.tools-wrapper {
+  display: grid;
+  align-content: center;
+  flex-direction: column;
+  justify-content: center;
+  grid-auto-flow: column;
+  gap: 4px;
+}
+.menuInTools {
+  height: 100%!important;
+}
