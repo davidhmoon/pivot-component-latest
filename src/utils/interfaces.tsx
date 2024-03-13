@@ -21,3 +21,38 @@ export interface Column {
     computed?: (row?: object) => string | Number;
     style?: React.CSSProperties | ((prop: any) => React.CSSProperties);
 }
+
+
+export interface Query {
+    service: string;
+    kwargs: {
+        groups: any;
+        name: string;
+    };
+    body?: object | string;
+}
+
+export interface GroupDataProps {
+    queries: Query[];
+    export?: {
+        columns: object[];
+        format: string;
+    };
+}
+
+export interface Coordinates {
+    port: string;
+    value: string;
+    lat: number;
+    lng: number;
+    tittle?: string;
+    alert?: string;
+    code?: string;
+    status?: string;
+    statusD?: string;
+    comment?: string;
+    date?: string;
+    to_date?: string;
+    isGeneral?: boolean;
+    modified?: string;
+}

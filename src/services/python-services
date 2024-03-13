@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { GroupDataProps } from '../utils/interfaces';
 import { axiosInstance } from '../interceptors/private.interceptor';
-
+import { encryptText, serializeObject } from './security';
 
 export async function getPivotService(group: string, params?: object) {
     if (params) {
@@ -14,4 +14,29 @@ export async function getPivotService(group: string, params?: object) {
         return axiosInstance.get(`/storePivot/${group}`).then((data: AxiosResponse) => data.data);
     }
 }
+
+export const groupData = (data: GroupDataProps, params?: object, by: string = 'parquet') => {
+    //encrypted two queries and add as a body
+    data.queries.forEach((query, index) => {
+        data.queries[index].body = encryptText(JSON.stringify(query.body));
+    });
+
+    const config = {
+        headers: {
+            'data-source': by,
+        },
+    };
+    if (params) {
+        return axiosInstance
+            .post(`/reports/group_data/${data.queries[0].kwargs.groups}`, data, {
+                params: params,
+                ...config,
+            })
+            .then((data: AxiosResponse) => data.data);
+    } else {
+        return axiosInstance
+            .post(`/reports/group_data/${data.queries[0].kwargs.groups}`, data, config)
+            .then((data: AxiosResponse) => data.data);
+    }
+};
 
