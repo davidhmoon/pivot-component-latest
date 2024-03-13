@@ -40,7 +40,7 @@ export const PivotTable = ({
     isExport = false,
     queries_to_export,
 }: PivotTableProps) => {
-    //let groups = initialGroups;
+    //let groups = initialGroups hello world;
     const [rows, setRows] = useState([] as any);
     const [childOrder] = useState('');
     const [totalsArray, setTotalsArray] = useState([] as any);
