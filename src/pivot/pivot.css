@@ -1,0 +1,258 @@
+/*
+ * The table's own styles. Colors come from the page's custom properties when
+ * they exist and fall back to the values here, so the component also works
+ * on a page that defines none of them.
+ */
+.pivot {
+  --pivot-surface: var(--surface, #ffffff);
+  --pivot-text: var(--text, #1d2422);
+  --pivot-muted: var(--muted, #5d6a66);
+  --pivot-line: var(--line, #e2e0d8);
+  --pivot-accent: var(--accent, #1f6f5c);
+  --pivot-accent-soft: var(--accent-soft, #e4f1ed);
+  --pivot-hover: var(--row-hover, #f2f6f4);
+  --pivot-up: var(--up, #19734f);
+  --pivot-down: var(--down, #b3382c);
+  --pivot-indent: 1.4rem;
+  --pivot-pad: 0.75rem;
+
+  color: var(--pivot-text);
+  background: var(--pivot-surface);
+  border: 1px solid var(--pivot-line);
+  border-radius: 10px;
+}
+
+.pivot__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--pivot-pad);
+  border-bottom: 1px solid var(--pivot-line);
+}
+
+.pivot__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: inherit;
+  background: var(--pivot-surface);
+  border: 1px solid var(--pivot-line);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pivot__button:hover:not(:disabled),
+.pivot__button[aria-expanded='true'] {
+  border-color: var(--pivot-accent);
+}
+
+.pivot__button:disabled {
+  color: var(--pivot-muted);
+  opacity: 0.6;
+  cursor: default;
+}
+
+.pivot__scroll {
+  overflow-x: auto;
+  border-radius: 0 0 10px 10px;
+}
+
+.pivot__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pivot__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.pivot__table th,
+.pivot__table td {
+  padding: 0.5rem var(--pivot-pad);
+  text-align: left;
+  font-weight: 400;
+  border-bottom: 1px solid var(--pivot-line);
+}
+
+.pivot__table thead th {
+  padding: 0;
+  font-size: 0.8rem;
+  color: var(--pivot-muted);
+  white-space: nowrap;
+  border-bottom-width: 2px;
+}
+
+.pivot__table .pivot__number {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.pivot__sort {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 0.6rem var(--pivot-pad);
+  font: inherit;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.pivot__number > .pivot__sort {
+  justify-content: flex-end;
+}
+
+.pivot__sort:hover {
+  color: var(--pivot-text);
+}
+
+.pivot__sort-mark {
+  opacity: 0.45;
+}
+
+th[aria-sort='ascending'] .pivot__sort,
+th[aria-sort='descending'] .pivot__sort {
+  color: var(--pivot-accent);
+}
+
+th[aria-sort='ascending'] .pivot__sort-mark,
+th[aria-sort='descending'] .pivot__sort-mark {
+  opacity: 1;
+}
+
+/* Each level is indented one step further than its parent. */
+.pivot__row > th,
+.pivot__note > td {
+  padding-inline-start: calc(var(--pivot-pad) + var(--pivot-depth, 0) * var(--pivot-indent));
+}
+
+.pivot__row:hover > * {
+  background: var(--pivot-hover);
+}
+
+.pivot__row[data-depth='0'] > th {
+  font-weight: 600;
+}
+
+.pivot__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-inline-start: -0.25rem;
+  padding: 0.1rem 0.25rem;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pivot__chevron {
+  flex: none;
+  color: var(--pivot-muted);
+  transition: transform 120ms ease;
+}
+
+.pivot__toggle[aria-expanded='true'] .pivot__chevron {
+  transform: rotate(90deg);
+  color: var(--pivot-accent);
+}
+
+/* Lines up a last-level label with the labels that have an arrow. */
+.pivot__leaf {
+  display: inline-block;
+  padding-inline-start: calc(14px + 0.35rem);
+}
+
+.pivot__growth--up {
+  color: var(--pivot-up);
+}
+
+.pivot__growth--down {
+  color: var(--pivot-down);
+}
+
+.pivot__growth > span {
+  font-size: 0.7em;
+}
+
+.pivot__note > td {
+  color: var(--pivot-muted);
+  font-size: 0.9rem;
+}
+
+.pivot__note--error > td {
+  color: var(--pivot-down);
+}
+
+.pivot__retry {
+  margin-inline-start: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  font: inherit;
+  color: var(--pivot-text);
+  background: var(--pivot-surface);
+  border: 1px solid var(--pivot-line);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pivot__spinner {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-inline-end: 0.5rem;
+  vertical-align: -0.05em;
+  border: 2px solid var(--pivot-line);
+  border-top-color: var(--pivot-accent);
+  border-radius: 50%;
+  animation: pivot-spin 700ms linear infinite;
+}
+
+.pivot__total > * {
+  font-weight: 600;
+  background: var(--pivot-accent-soft);
+  border-bottom: 0;
+}
+
+.pivot__table tfoot th,
+.pivot__table tfoot td {
+  font-weight: 600;
+  border-top: 2px solid var(--pivot-line);
+}
+
+.pivot :focus-visible {
+  outline: 2px solid var(--pivot-accent);
+  outline-offset: 2px;
+}
+
+@keyframes pivot-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pivot__spinner {
+    animation-duration: 3s;
+  }
+
+  .pivot__chevron {
+    transition: none;
+  }
+}
